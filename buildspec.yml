@@ -1,11 +1,13 @@
-version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html
-hooks:
-  AfterInstall:
-    - location: scripts/restart_server.sh
-      timeout: 300
-      runas: root
+version: 0.2
+phases:
+  install:
+    commands:
+      - sudo yum install -y httpd
+      - sudo systemctl start httpd
+  build:
+    commands:
+      - echo "Building the web app"
+artifacts:
+  files:
+    - '**/*'
 
