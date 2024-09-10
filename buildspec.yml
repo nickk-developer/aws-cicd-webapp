@@ -1,13 +1,16 @@
 version: 0.2
+
 phases:
   install:
     commands:
-      - sudo yum install -y httpd
-      - sudo systemctl start httpd
+      - echo Installing Apache Web Server
+      - sudo yum install -y httpd  # Installs the Apache server
   build:
     commands:
-      - echo "Building the web app"
+      - echo Starting Apache server
+      - httpd -k start  # Starts Apache server in the container-friendly way
+
 artifacts:
   files:
-    - '**/*'
+    - '**/*'  # Include all files in the build output
 
